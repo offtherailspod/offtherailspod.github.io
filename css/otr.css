@@ -26,14 +26,28 @@ a:hover {
 html,
 body {
   height: 100%;
-  background-image: url("bg.jpg");
+  background-image: url("../img/bg.jpg");
+  background-repeat: no-repeat;
   background-color: #333;
-  background-size: contain;
+  background-size: cover;
 }
 body {
   color: #e6e600;
   text-align: center;
   text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+}
+
+.bg {
+  /* The image used */
+  background-image: url("img_girl.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
