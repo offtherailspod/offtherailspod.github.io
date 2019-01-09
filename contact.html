@@ -32,7 +32,6 @@
     
   </head>
   <body>
-  
   <div class="site-wrap">
 
     
@@ -139,7 +138,7 @@
 
           <div class="row">
             <div class="col-lg-8 mb-5">
-              <form action="#">
+              <form>
                
 
                 <div class="row form-group">
@@ -178,7 +177,7 @@
 
                 <div class="row form-group">
                   <div class="col-md-12">
-                    <input type="submit" value="Send Message" class="btn btn-primary py-2 px-4 text-white">
+                    <input type="button" value="Send Message" id="btn-submit" class="btn btn-primary py-2 px-4 text-white">
                   </div>
                 </div>
 
@@ -301,10 +300,13 @@
   <script src="js/jquery.mousewheel.min.js"></script>
 
   <script src="js/main.js"></script>
-  
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <script src="js/elasticemail.js"></script>
+
   <script>
     $(document).ready(function(){
       $('#lightgallery').lightGallery();
+      document.getElementById("btn-submit").addEventListener ("click", sendMail, false);
     });
   </script>
     
