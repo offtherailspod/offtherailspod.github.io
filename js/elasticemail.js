@@ -19,5 +19,5 @@ function sendMail() {
 	}
 	var body = fname+" "+lname+"\n"+email+"\n\n"+message+"\n";
 	alert(body);
-	Email.send({ SecureToken : "49c0bb81-2d92-4dd4-a2b5-df477fe315e0", To : 'matt.weidner@gmail.com', From : "offtherailswebmailer@gmail.com", Subject : subject, Body : body}).then( message => notifyUser(message));
+	Email.send({ SecureToken : "49c0bb81-2d92-4dd4-a2b5-df477fe315e0", To : 'offtherailsconnect@gmail.com', From : "offtherailswebmailer@gmail.com", Subject : subject, Body : body}).then( message => notifyUser(message));
 }
