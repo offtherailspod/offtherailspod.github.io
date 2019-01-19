@@ -8,3 +8,8 @@ it1.jpg - Photo by rawpixel on Unsplash
 it2.jpg - Photo by rawpixel on Unsplash
 STEM1.jpg - Photo by Javier Quesada on Unsplash
 mic1.jpg - Photo by Jacek Dylag on Unsplash
+
+reviews
+WW1.jpg - Photo by Dylan de Jonge on Unsplash
+RW1.jpg - Photo by Mika Baumeister on Unsplash
+JH1.jpg - Photo by freestocks.org on Unsplash
