@@ -1297,7 +1297,7 @@ a {
   font-size: 15px;
 }
 
-.active, .collapsible:hover {
+.active_list, .collapsible_list:hover {
   background-color: #2b456d;
 }
 
