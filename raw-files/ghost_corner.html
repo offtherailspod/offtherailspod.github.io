@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Gh0stinthemachine's Blog</title>
+	
+	<link rel="stylesheet" href="style.css">
+	
+</head>
+	<body>
+
+		<header>
+
+			<h1 align="center"><strong>@ Brief History of the Computer Pa$$w0rd</strong></h1>
+
+		</header>
+
+		<p> </p>
+		<div class="container-fluid">
+			<div class="content">
+				<p>Computer passwords have been around since 1961.  Massachusetts Institute of Technology (MIT) had built the Compatible Time-Sharing System (CTSS), a time-share research computer.  Researchers were restricted to using CTSS to four hours per week, and so Fernando Corbat&#243; developed individual logins with passwords to be able keep track of when researchers hit their time limit and to keep their individual files separate.  This, of course, led to the first computer hack in 1962.  Ph.D. researcher Allen Scherr wanted to extend his usage beyond four hours, and so found the means to print the password file so he could log in as other users (<a href="https://multicians.org/thvv/compatible-time-sharing-system.pdf">CTSS 50th Anniversary Commemorative Overview</a>) and use their time.  Likewise, the original UNIX machines kept username/passwords in a single file, and we can still see remnants of that in today's /etc/passwd file, though that doesn't actually contain passwords anymore.</p>  
+
+				<p> </p>
+
+				<p>One of the earliest forms of encrypting passwords was a type of one-way hashing and appeared in the MIT/ARPA Multics machine in the late 60's.  This involved running the password against some square roots and then ANDing.  This original hash was only temporarily useful though, as it relied on a bug in the compiler that also did squaring wrong and so the math couldn't be repeated by hand, though if the compiler bug was ever fixed, everyone's password would instantly be changed.  In the early 70's, USAF Project Zarf was able to reverse engineer even the incorrect math to gain access, install a backdoor, and decipher the password list. (<a href="https://www.multicians.org/security.html">How the Air Force cracked Multics Security</a>).  Meanwhile, Robert Morris Sr. of Bell Labs instead used code from the old WWII M-209 cipher machines (<a href="https://cryptomuseum.com/crypto/hagelin/m209/index.htm">Crypto Museum</a>) to create the first actual hashes for the UNIX.  A number code would be stored on the server instead of the password, and the password would be mixed with a constant to work as a key to unlock that number code.  The problem with this method though was that computers could perform the core calculations extremely quickly and brute force and dictionary attacks were fast enough to be feasible to unlock the system.</p>
+
+				<p></p>
+
+				<p>DES became the dominant encryption algorithm for a number of years.  DES builds off the original UNIX hash by making the constant customizable, running the algorithm against itself 25 times, and unlockable with the password/constant combination.  The key to DES security was that it was intentionally very hungry for software resources.  One password attempt took considerably longer to perform, exponentially increasing the time dictioary and brute force attacks would take.</p>
+
+				<p></p>
+
+				<p>Encryption has evolved considerably since DES, (<a href="https://www.tutorialspoint.com/cryptography/advanced_encryption_standard.htm">AES</a> is now one of the standard algorithms) especially as computers become more and more powerful.  The evolution of cryptography is fascinating, but out of scope for a brief history of passwords.  The general principle though remains a hash -- a string of numbers computed by mixing the password with a pre-computed key.  Servers retain a copy of the algorithm that generates the pre-computed key as well as the resulting hash, but not the password itself (unless it happens to be a server owned by <a href="https://www.neowin.net/news/t-mobile-austria-stores-passwords-in-plain-text-because-its-security-is-amazingly-good">T-Mobile Austria</a>...)).  The user then proves that they are who they say they are by entering the string of text that will successully unlock the hash, i.e. the password.</p>
+
+				<p></p>
+
+				<p>In many cases, it is not feasible for attackers to try brute force or dictionary attacks against servers.  Computer GPU's can run through millions of hashes in a second, but when a server required two-factor authorization, a CAPTCHA response, or a 15-minute lockout after three incorrect tries, the attacker is extremely limited in ability to crack into a login prompt.  Much of what we see in these breach attacks are hackers gaining access to lists of hashes and the associated email address linked to each hash.  They download these hash lists and then on their own computer where there are no time limits imposed, they can crackers unfettered to their heart's content.  Once a hash is cracked, they now have a password that will unlock the hash for that site for that user.  That is the danger of using the same password on multiple sites.  Since a large number of people reuse passwords, once one hash falls, it seems a fair guess to try the exact same password with that email address for another site.  This is known as <a href="https://www.owasp.org/index.php/Credential_stuffing">credential stuffing</a> and is increasingly becoming a common method of <a href="https://www.trendmicro.com/vinfo/us/security/news/cybercrime-and-digital-threats/report-finds-increased-credential-stuffing-attacks-on-financial-sector">attack</a>.  Likewise password length is an issue -- as an example, the computer I use to write this document can brute force every 1-6-character password possible against a hash and finish as quick as I hit enter; 7 characters will take minutes; 8 characters hours; and exponentially growing therefrom.</p>
+
+				<p></p>
+
+				<p>The new <a href="https://www.passwordping.com/surprising-new-password-guidelines-nist/">NIST</a> standards are too lax as well.  'correcthorsebatterystaple' is good password length, but standardizing one character set and four intelligble words means attacks just need to hack the standard rather than the entire possible character combination.  Playing around with a top 10,000 English wordlist adhering to NIST standard, even something like an MD5 of 'butcherbakerpsychologisttrain' will take this machine roughly 300 days to crack -- hardly a worthy standard.  Please use at least one capital letter or number in the middle of it all, at least two character sets (abc..., ABC..., 123... !@#..., etc.) so the passwords have to be cracked character by character instead of word by word.  Better yet, use a password manager.  They often have password generators built in so you can get the full defensive capability of a strong password.  Also, security researcher Troy Hunt, who has uncovered many of these stolen hashlists, maintains <a href="https://haveibeenpwned.com/">haveibeenpwned</a> as a service that maintains a database of breaches with email addresses so you can look up your own email address and it will report back which breaches contain entries for that address.  If you use Firefox as your browser, they have recently added <a href="https://monitor.firefox.com/">Firefox Monitor</a> which incorporates haveibeenpwned into Firefox as well, giving the user heads-up if they are visiting a breached site.</p>
+
+				<p></p>
+
+				<p>Some annoying trends:</p>
+				<ul>
+					<li>Of the thousands of hashes obtained in the Gawker breach, over 1% of them were 'password'</li>
+					<li>Since SplashData started keeping track in 2011, either 'password' or '123456' has been the most used password every year</li>
+
+					Passwords that have made the top 25 list every year:
+					<li>123456</li>
+					<li>1234567</li>
+					<li>12345678</li>
+					<li>abc123</li>
+					<li>password</li>
+					<li>qwerty</li>
+				</ul>
+			</div>
+		</div>
+    </body>
+	
+	<footer>
+	 <p> </p>
+	 <p> authored by: Liam Seeley</p>
+	 <p> February 12, 2019</p> 
+	</footer>
+
+</html>
